@@ -1,4 +1,5 @@
-<? 
-require_once("header.php")
+<?php
+requuire_once("database.php");
 
+echo "abc";
 ?>
