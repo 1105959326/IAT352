@@ -43,7 +43,7 @@
 		while ($row = mysqli_fetch_assoc($res)){
 		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter-app\">";
 		    echo "<div class=\"portfolio-wrap\">";
-		    echo "<img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">";
+		    echo "<img src=\"assets/img/portfolio/portfolio-1.jpg\" class=\"img-fluid\">";
 
 		    }
 
