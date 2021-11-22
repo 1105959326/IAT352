@@ -40,9 +40,10 @@
     		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter-app\">";
     		    echo "<div class=\"portfolio-wrap\" >";
     		    echo "<img src=" .$row['PhotoURL']. "  class=\"img-fluid\" style=\"margin-left:auto;margin-right:auto;width:100%;height:100%\">";
-    		    echo "<div class=\"portfolio-info\">
-                    <h4>" .$row['SiteName']. "</h4>
-                    <p>App</p>
+    		    echo "<div class=\"portfolio-info\">";
+                    if ($row['SiteName']!= null) echo "<h4>" .$row['SiteName']. "</h4>";
+                    else echo "<h4>Untitled</h4>";
+                    echo "<p>App</p>
                     <div class=\"portfolio-links\">
                       <a href=\"assets/img/portfolio/portfolio-1.jpg\" data-gallery=\"portfolioGallery\" class=\"portfolio-lightbox\" title=\"App 1\"><i class=\"bx bx-plus\"></i></a>
 

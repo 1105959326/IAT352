@@ -19,9 +19,10 @@
 	$id = $_GET['varname'];
     $res = queryAllbyID('artwork', $id);
     
-	
+
 
 	while ($row = mysqli_fetch_assoc($res)){
+	
 	echo "    <section id=\"portfolio-details\" class=\"portfolio-details\">
       <div class=\"container\">
 
@@ -55,6 +56,10 @@
               <p>
                 ".$row['ArtistProjectStatement']."
               </p>
+              <h2>Description of Work</h2>
+              <p>
+                ".$row['DescriptionOfwork']."
+              </p>
             </div>
           </div>
 
@@ -62,12 +67,23 @@
 
           <div class=\"col-lg-6 \">
             <div class=\"info-box mb-4\">
-              <i class=\"bx bx-map\"></i>
               <h3>Our Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
-            </div>
-            <iframe class=\"mb-4 mb-lg-0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyD-LdeoPQejHASho9UBQNvAlvPrBS6zwVM&q=49.2730833,-123.1049943\" frameborder=\"0\" style=\"border:0; width: 100%; height: 384px;\" allowfullscreen></iframe>
-          </div>
+            </div>";
+        
+    if ($row['Geom'] == null){
+		echo "<Strong>Geometry Information not found</Strong>";
+	}
+	else{
+
+	$start = strpos($row['Geom'], '[') + 1;
+	$end = strpos($row['Geom'], ']');
+	$between = substr($row['Geom'], $start, $end - $start);
+	$pos = explode(",", $between);
+
+	echo "<iframe class=\"mb-4 mb-lg-0\" src=\"https://www.google.com/maps/embed/v1/place?key=AIzaSyD-LdeoPQejHASho9UBQNvAlvPrBS6zwVM&q=".$pos[1].",".$pos[0]."\" frameborder=\"0\" style=\"border:0; width: 100%; height: 384px;\" allowfullscreen></iframe>";
+	}
+
+        echo "</div>
 
         <div class=\"col-lg-8\">
             <div class=\"portfolio-info\">
