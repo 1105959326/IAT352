@@ -106,6 +106,12 @@
   </main><!-- End #main -->";
 	}
 
-
-require_once('../public/footer.php');
 ?>
+
+<footer id="footer">
+    
+    <?php
+    include_once('footer.php');
+    ?>
+  
+</footer>
