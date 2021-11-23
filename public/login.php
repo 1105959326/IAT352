@@ -1,6 +1,56 @@
+<?php
+require_once('../private/initialize.php');
+
+$errors = [];
+
+// TODO: This page should not show if a session is present.
+// Redirect to staff index if a session is detected.
+if(isset($_SESSION['username'])) {
+    //redirect_to(url_for('/staff/index.php'));
+    header('Location: index.php');
+    exit();
+}
+
+if(is_post_request()) {
+  // TODO: Verify the password matches the record
+  // if it does not, throw an error message
+  // otherwise set the session and redirect to dashboard
+  if(!empty($_POST['username']) && !empty($_POST['password'])) {
+    // Write a query to retrieve the hashed_password
+    $user_query = "SELECT password FROM member WHERE userName = '" . $_POST['username'] . "'";
+    $user_res = mysqli_query($db, $user_query);
+
+    // If there is no record, then it should just display the error message
+     if(mysqli_num_rows($user_res) != 0) {
+      // Save the hashed password from db into a variable
+      
+        $hashed_password = mysqli_fetch_assoc($user_res)['password'];
+
+        // Use password verify to check if the entered password matches
+        if(password_verify($_POST['password'], $hashed_password)) {
+          //echo("loged in");
+
+          // Store session and redirect
+          $_SESSION['username'] = $_POST['username'];
+          header('Location: index.php');
+        } else {
+          // If verify fails, display an error message
+          //echo("password wrong");
+          array_push($errors, "Wrong Password. Please try again.");
+        }
+      } else  {
+        array_push($errors, "The account does not exist. Plesae check username.");
+      }
+  } else {
+    array_push($errors, "Username or password field is not filled.");
+  }
+
+  // END TODO
+}
+
+?>
 
 <head>
-
   <!-- =======================================================
   * Template Name: Eterna - v4.6.0
   * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
@@ -40,14 +90,18 @@
     <!-- ======= Login Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-
+      <?php 
+      foreach($errors as $x => $value) {
+        echo "<a href='#'>". $value . "</a>";
+        echo "<br> <br>";
+      }?>
 
         </div>
 
         <div class="row justify-content-center">
 
           <div class="col-lg-9 ">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="login.php" method="post" class="php-email-form">
               <div class="row">
 
                 <div class="form-group mt-3">
@@ -61,11 +115,7 @@
                 </div>
               </div>
 
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+        
               <div class="text-center">
                   <button type="submit">Sign In</button><br>
                   <a href="registration.php">Don't have an account yet?</a><br>
@@ -87,6 +137,7 @@
   <?php
   include_once('footer.php');
   ?>
+
 
   </footer><!-- End Footer -->
 

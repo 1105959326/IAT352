@@ -25,7 +25,7 @@ if(is_post_request()) {
 
     // If the count is not 0, that means an account with the same username already exists
     if(mysqli_fetch_assoc($existing_res)['count'] != 0) {
-      array_push($errors, 'The username already exists in the database, please try another username instead');
+      array_push($errors, 'The username has been used, please try another username instead.');
     } else {
       // Else encrpyt the password
       $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -48,7 +48,7 @@ if(is_post_request()) {
       }
     }
   } else {
-    array_push($errors, 'Password do not match');
+    array_push($errors, 'Two passwords do not match, please try again.');
   }
 
 
@@ -99,6 +99,7 @@ if(is_post_request()) {
           <li>Registration</li>
         </ol>
         <h2>Registration</h2>
+        
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -106,6 +107,14 @@ if(is_post_request()) {
     <!-- ======= Login Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
+          
+      <?php 
+      foreach($errors as $x => $value) {
+        echo "<a href='#'>". $value . "</a>";
+        echo "<br> <br>";
+      }
+
+      ?>
 
         </div>
 
@@ -154,11 +163,7 @@ if(is_post_request()) {
 
               </div>
 
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+            
               <div class="text-center">
                   <button type="submit">Registrate</button><br>
                   <a href="login.php">Already have an account?</a><br>
