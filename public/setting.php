@@ -117,6 +117,7 @@ if(is_post_request()) {
       <div class="container">
       <?php 
       echo $_SESSION['message'];
+      unset($_SESSION['message']);
       foreach($errors as $x => $value) {
         echo "<a href='#'>". $value . "</a>";
         echo "<br> <br>";
