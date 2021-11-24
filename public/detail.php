@@ -49,7 +49,10 @@
                 <li><strong>Type</strong>: ".$row['Type']."</li>
                 <li><strong>Site Name</strong>: ".$row['SiteName']."</li>
                 <li><strong>Project date</strong>: ".$row['YearOfInstallation']."</li>
-
+                <br>
+                <form method = \"post\">
+                  <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"favor\" value=\"Add to Favorite\"></div>
+                </form>
               </ul>
             </div>
             <div class=\"portfolio-description\">
@@ -158,7 +161,6 @@
 
 if(isset($_POST['submit'])) {
     if(isset($_SESSION['username'])) {
-      echo $_SESSION['username'];
       $userID = $_SESSION['username'];
       $date = $_POST['date'];
       $content = $_POST['content'];
@@ -172,6 +174,20 @@ if(isset($_POST['submit'])) {
       header('Location:login.php');
     }
   }
+
+
+if (isset($_POST['favor'])){
+  if(isset($_SESSION['username'])) {
+      $userID = $_SESSION['username'];
+      $sql = "INSERT INTO favourite(artID, userID) VALUES ('$id', '$userID')";
+      if (mysqli_query($db, $sql)){
+        //echo "Pulished!";
+      }
+    }
+    else{
+      header('Location:login.php');
+    }
+}
 ?>
 
 <footer id="footer">

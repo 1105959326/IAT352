@@ -167,7 +167,40 @@ if(is_post_request()) {
               </div>
             </form>
           </div>
+<?php 
+$res = queryFromFav($_SESSION['username']);
+ echo "
+          <div class=\"row\">
+          <div class=\"col-lg-2\"> </div>
+          <h2 class=\"col-lg-2\"> Favorite List</h2>
+          <div class=\"col-lg-12\"> </div>";
+while ($row = mysqli_fetch_assoc($res)){
 
+  echo "
+          <div class=\"col-lg-4\">
+            <form method=\"post\" role=\"form\" class=\"php-email-form\">
+              <div class=\"portfolio-info\">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Type</strong>: ".$row['Type']."</li>
+                <li><strong>Site Name</strong>: ".$row['SiteName']."</li>
+                <li><strong>Project date</strong>: ".$row['YearOfInstallation']."</li>
+                <br>
+                  <div class=\"text-center\"><a href=\"detail.php?varname=".$row['RegistryID']."\" style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\">More Information</a></div>
+                  <br>
+                  <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"remove\" value=\"Remove From Favorite\"></div>
+              </ul>
+            </div>
+            </form>
+          </div>";
+
+  if (isset($_POST['remove'])){
+    favDelete($row['RegistryID'], $_SESSION['username']);
+    header('setting');
+  }
+          }
+      echo "</div>";
+?>
         </div>
 
       </div>

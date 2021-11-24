@@ -28,6 +28,23 @@ function queryAllCommentsbyID($table, $id){
 	return $res;
 }
 
+function queryFromFav($id){
+  global $db;
+
+  $sql = "SELECT * FROM artwork, favourite WHERE artID = RegistryID AND userID = '$id'";
+  //echo $sql;
+  $res = mysqli_query($db, $sql);
+
+  return $res;
+}
+
+function favDelete($artid, $userID){
+  global $db;
+
+  $sql = "DELETE FROM favourite WHERE artID = '$artid' AND userID = '$userID'";
+  //echo $sql;
+  $res = mysqli_query($db, $sql);
+}
 
 function update_subject($subject) {
     global $db;

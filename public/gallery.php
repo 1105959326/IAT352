@@ -45,10 +45,9 @@ require_once('header.php'); ?>
     		    echo "<div class=\"portfolio-info\">";
                     if ($row['SiteName']!= null) echo "<h4>" .$row['SiteName']. "</h4>";
                     else echo "<h4>Untitled</h4>";
-                    echo "<p>App</p>
+                    echo "
                     <div class=\"portfolio-links\">
-                      <a href=\"assets/img/portfolio/portfolio-1.jpg\" data-gallery=\"portfolioGallery\" class=\"portfolio-lightbox\" title=\"App 1\"><i class=\"bx bx-plus\"></i></a>
-
+                      
                       <a href=\"detail.php?varname=".$row['RegistryID']."\" title=\"More Details\"><i class=\"bx bx-link\"></i></a>
 
                       
