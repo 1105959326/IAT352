@@ -17,3 +17,13 @@ function queryAllbyID($table, $id){
 
 	return $res;
 }
+
+function queryAllCommentsbyID($table, $id){
+	global $db;
+
+	$sql = "SELECT * FROM $table WHERE artID = '$id'";
+	//echo $sql;
+	$res = mysqli_query($db, $sql);
+
+	return $res;
+}

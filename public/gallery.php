@@ -1,6 +1,6 @@
 <?php 
 require_once('../private/initialize.php');
-include_once('header.php'); ?>
+require_once('header.php'); ?>
 
 <main id="main">
 
