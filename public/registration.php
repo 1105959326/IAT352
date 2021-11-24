@@ -36,7 +36,7 @@ if(is_post_request()) {
                             '" . mysqli_real_escape_string($db, $hashed_password) . "',
                             '" . mysqli_real_escape_string($db, $_POST['fname']) . "',
                             '" . mysqli_real_escape_string($db, $_POST['lname']) . "',
-                            '" . mysqli_real_escape_string($db, $_POST['last_name']) . "')";
+                            '" . mysqli_real_escape_string($db, $_POST['contact']) . "')";
 
       if(mysqli_query($db, $insert_user_query)) {
         // INSERT is successful, save a session then redirect to dashboard

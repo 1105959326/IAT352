@@ -27,3 +27,46 @@ function queryAllCommentsbyID($table, $id){
 
 	return $res;
 }
+
+
+function update_subject($subject) {
+    global $db;
+
+
+    $sql = "UPDATE member SET ";
+    $sql .= "password='" . db_escape($db, $subject['password']) . "', ";
+    $sql .= "FirstName='" . db_escape($db, $subject['FirstName']) . "', ";
+    $sql .= "LastName='" . db_escape($db, $subject['LastName']) . "',";
+	$sql .= "otherContact='" . db_escape($db, $subject['otherContact']) . "' ";
+    $sql .= "WHERE userName = '" . $_SESSION['username'] . "'";
+    
+    $result = mysqli_query($db, $sql);
+	
+    // For UPDATE statements, $result is true/false
+    if($result) {
+      return true;
+    } else {
+      // UPDATE failed
+      echo mysqli_error($db);
+	  //echo $sql;
+      db_disconnect($db);
+      exit;
+    }
+
+  }
+
+function find_subject_by_id($username) {
+    global $db;
+
+    $sql = "SELECT password, FirstName, LastName, otherContact FROM member ";
+    $sql .= "WHERE username='" . db_escape($db, $username) . "' ";
+    // echo $sql;
+
+    $result = mysqli_query($db, $sql);
+    //confirm_result_set($result);
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $subject; // returns an assoc. array
+}
+
+?>

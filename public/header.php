@@ -54,7 +54,7 @@
               if(isset($_SESSION['username'])) {
                 //redirect_to(url_for('/staff/index.php'));
               
-                echo "<li><a href='#'> Setting: ". $_SESSION['username'] ?? ''."</a></li>";
+                echo "<li><a href='setting.php'> Setting: ". $_SESSION['username'] ?? ''."</a></li>";
                 echo "<li><a href='logout.php'>Log Out</a></li>";
                 //header('Location: index.php');
                 //exit();
