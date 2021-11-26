@@ -23,12 +23,28 @@
         <div class="carousel-inner" role="listbox">
 
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background: url(../Eterna/assets/img/slide/slide-1.jpg)">
+          <div class="carousel-item active" style="background: url(../Eterna/assets/img/banner/1.jpg)">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Vancouver<span>Public Art</span></h2>
                 <p class="animate__animated animate__fadeInUp">Check out the free public artwork now on display in downtown Vancouver. Log in to create your own favourite list.</p>
-                <a href="login.php" class="btn-get-started animate__animated animate__fadeInUp">Sign in</a>
+                <?php
+                  if(isset($_SESSION['username'])) {
+                //redirect_to(url_for('/staff/index.php'));
+              
+                    echo "<a href='setting.php' class='btn-get-started animate__animated animate__fadeInU'>Setting: ".$_SESSION['username'] ?? '';
+                    echo "</a><br>";
+                    echo "<a href='logout.php' class='btn-get-started animate__animated animate__fadeInU'>Log out</a>";
+                    //echo "<li><a href='logout.php'>Log Out</a></li>";
+                //header('Location: index.php');
+                //exit();
+                  }else{
+                    
+                    echo "<a href='login.php' class='btn-get-started animate__animated animate__fadeInU'>Sign in</a>";
+                    
+                  }
+                ?>
+                
               </div>
             </div>
           </div>

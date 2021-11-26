@@ -1,7 +1,6 @@
 
 
 <head>
-
   <!-- =======================================================
   * Template Name: Eterna - v4.6.0
   * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
@@ -11,6 +10,7 @@
   <?php
   require_once('../private/initialize.php');
   include_once('header.php');
+  $_SESSION['callback_url'] = 'citation.php';
   ?>
 </head>
 

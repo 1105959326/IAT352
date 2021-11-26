@@ -32,7 +32,14 @@ if(is_post_request()) {
 
           // Store session and redirect
           $_SESSION['username'] = $_POST['username'];
-          header('Location: index.php');
+
+          $callback_url = "index.php";
+          if(isset($_SESSION['callback_url'])){
+            $callback_url = $_SESSION['callback_url'];
+            $_SESSION['callback_url'] = [];
+          }
+          
+          header('Location:'. $callback_url);
         } else {
           // If verify fails, display an error message
           //echo("password wrong");

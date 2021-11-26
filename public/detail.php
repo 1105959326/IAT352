@@ -1,4 +1,6 @@
-<?php require_once('header.php'); ?>
+<?php 
+require_once('../private/initialize.php');
+require_once('header.php'); ?>
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -16,10 +18,13 @@
 
 <?php
 
-  require_once('../private/initialize.php');
+  
   $id = $_GET['varname'];
   $res = queryAllbyID('artwork', $id);
-    
+  
+  $_SESSION['callback_url'] = 'detail.php?varname='.$id;
+  //echo $id;
+  //echo $_SESSION['callback_url'];
 
 
   while ($row = mysqli_fetch_assoc($res)){
