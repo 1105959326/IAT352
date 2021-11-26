@@ -168,7 +168,8 @@ if(is_post_request()) {
             </form>
           </div>
 <?php 
-$res = queryFromFav($_SESSION['username']);
+$userID = find_id_by_name($_SESSION['username']);
+$res = queryFromFav($userID);
  echo "
           <div class=\"row\">
           <div class=\"col-lg-2\"> </div>
@@ -195,7 +196,7 @@ while ($row = mysqli_fetch_assoc($res)){
           </div>";
 
   if (isset($_POST['remove'])){
-    favDelete($row['RegistryID'], $_SESSION['username']);
+    favDelete($row['RegistryID'], $userID);
     header('setting');
   }
           }

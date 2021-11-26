@@ -8,7 +8,7 @@ require_once('header.php'); ?>
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li>Detail</li>
         </ol>
         <h2>Detail</h2>
@@ -166,14 +166,18 @@ require_once('header.php'); ?>
 
 if(isset($_POST['submit'])) {
     if(isset($_SESSION['username'])) {
-      $userID = $_SESSION['username'];
+      $userID = find_id_by_name($_SESSION['username']);
       $date = $_POST['date'];
       $content = $_POST['content'];
       $rate = $_POST['rate'];
       $sql = "INSERT INTO comments(artID, userID, content, dates, rates) VALUES ('$id', '$userID', '$content', '$date', '$rate')";
       if (mysqli_query($db, $sql)){
         echo "Pulished!";
+      }else{
+        echo "WRONG Query:" . $sql;
       }
+      //echo "WRONG Query:" . $sql;
+      //echo $mysqli_error;
     }
     else{
       header('Location:login.php');
@@ -183,10 +187,12 @@ if(isset($_POST['submit'])) {
 
 if (isset($_POST['favor'])){
   if(isset($_SESSION['username'])) {
-      $userID = $_SESSION['username'];
+      $userID = find_id_by_name($_SESSION['username']);
       $sql = "INSERT INTO favourite(artID, userID) VALUES ('$id', '$userID')";
       if (mysqli_query($db, $sql)){
         //echo "Pulished!";
+      }else{
+        echo "WRONG Query:" . $sql;
       }
     }
     else{

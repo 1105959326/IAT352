@@ -86,4 +86,17 @@ function find_subject_by_id($username) {
     return $subject; // returns an assoc. array
 }
 
+function find_id_by_name($username) {
+  global $db;
+
+  $sql = "SELECT userID FROM member ";
+  $sql .= "WHERE username='" . db_escape($db, $username) . "' ";
+  // echo $sql;
+
+  $result = mysqli_query($db, $sql);
+  //confirm_result_set($result);
+  $subject = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return implode($subject); // returns an assoc. array
+}
 ?>
