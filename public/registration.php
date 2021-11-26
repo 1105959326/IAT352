@@ -165,6 +165,7 @@ if(is_post_request()) {
 
             
               <div class="text-center">
+                <br>
                   <button type="submit">Registrate</button><br>
                   <a href="login.php">Already have an account?</a><br>
               </div>

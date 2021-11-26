@@ -124,6 +124,7 @@ if(is_post_request()) {
 
         
               <div class="text-center">
+                <br>
                   <button type="submit">Sign In</button><br>
                   <a href="registration.php">Don't have an account yet?</a><br>
                   <a href="registration.php">Forgot Password</a>

@@ -123,7 +123,7 @@ if(is_post_request()) {
         echo "<br> <br>";
       }?>
 
-        </div>
+      </div>
 
         <div class="row justify-content-center">
 
@@ -167,18 +167,27 @@ if(is_post_request()) {
               </div>
             </form>
           </div>
+        </div>
+        <div class="container">
+
+          
 <?php 
 $userID = find_id_by_name($_SESSION['username']);
 $res = queryFromFav($userID);
  echo "
-          <div class=\"row\">
-          <div class=\"col-lg-2\"> </div>
+ 
+          <div class=\"row\"></div>
+          
           <h2 class=\"col-lg-2\"> Favorite List</h2>
           <div class=\"col-lg-12\"> </div>
-          <div class=\"row\"> ";
+          <div class=\"row\"> 
+          ";
+          
 while ($row = mysqli_fetch_assoc($res)){
 
   echo "
+ 
+  
           <div class=\"col-lg-4\">
             <form method=\"post\" role=\"form\" class=\"php-email-form\">
               <div class=\"portfolio-info\">

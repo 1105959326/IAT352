@@ -3,6 +3,7 @@
 <?php
   require_once('../private/initialize.php');
   include_once('header.php');
+  $_SESSION['callback_url'] = 'index.php';
 ?>
 
 <body>
@@ -58,6 +59,7 @@
   <main id="main">
 
 <section id="contact" class="contact">
+<div class="container">
 <br><br><br><br><br><br><br>
 <?php
 if (isset($_SESSION['username'])){
@@ -69,7 +71,7 @@ else{
   }
  echo "
           <div class=\"row\">
-          <div class=\"col-lg-2\"> </div>";
+           </div>";
           if (isset($_SESSION['username']))echo "<h2 class=\"col-lg-2\"> Favorite List</h2>";
           else echo "<h2 class=\"col-lg-2\"> Recommendation</h2>";
           echo "<div class=\"col-lg-12\"> </div>
@@ -79,6 +81,7 @@ else{
 while ($row = mysqli_fetch_assoc($res)){
 
   echo "
+
           <div class=\"col-lg-4\">
             <form method=\"post\" role=\"form\" class=\"php-email-form\">
               <div class=\"portfolio-info\">
