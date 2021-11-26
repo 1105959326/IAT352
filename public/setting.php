@@ -174,7 +174,8 @@ $res = queryFromFav($userID);
           <div class=\"row\">
           <div class=\"col-lg-2\"> </div>
           <h2 class=\"col-lg-2\"> Favorite List</h2>
-          <div class=\"col-lg-12\"> </div>";
+          <div class=\"col-lg-12\"> </div>
+          <div class=\"row\"> ";
 while ($row = mysqli_fetch_assoc($res)){
 
   echo "

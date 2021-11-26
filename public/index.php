@@ -57,8 +57,56 @@
 
   <main id="main">
 
+<section id="contact" class="contact">
+<br><br><br><br><br><br><br>
+<?php
+if (isset($_SESSION['username'])){
+  $userID = find_id_by_name($_SESSION['username']);
+  $res = queryFromFav($userID);
+}
+else{
+  $res = queryRecom();
+  }
+ echo "
+          <div class=\"row\">
+          <div class=\"col-lg-2\"> </div>";
+          if (isset($_SESSION['username']))echo "<h2 class=\"col-lg-2\"> Favorite List</h2>";
+          else echo "<h2 class=\"col-lg-2\"> Recommendation</h2>";
+          echo "<div class=\"col-lg-12\"> </div>
+          <div class=\"row\"> ";
+
+
+while ($row = mysqli_fetch_assoc($res)){
+
+  echo "
+          <div class=\"col-lg-4\">
+            <form method=\"post\" role=\"form\" class=\"php-email-form\">
+              <div class=\"portfolio-info\">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Type</strong>: ".$row['Type']."</li>
+                <li><strong>Site Name</strong>: ".$row['SiteName']."</li>
+                <li><strong>Project date</strong>: ".$row['YearOfInstallation']."</li>
+                <br>
+                  <div class=\"text-center\"><a href=\"detail.php?varname=".$row['RegistryID']."\" style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\">More Information</a></div>
+                  <br>";
+                  if (isset($_SESSION['username'])) echo "<div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"remove\" value=\"Remove From Favorite\"></div>";
+              echo "</ul>
+
+            </form>
+          </div>
+        </div>";
+
+          }
+      echo "</div>";
+
+?>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
     <!-- ======= Featured Section ======= -->
-    <section id="featured" class="featured">
+    <!-- <section id="featured" class="featured">
       <div class="container">
 
         <div class="row">
@@ -86,10 +134,10 @@
         </div>
 
       </div>
-    </section><!-- End Featured Section -->
+    </section> --><!-- End Featured Section -->
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <!-- <section id="about" class="about">
       <div class="container">
 
         <div class="row">
@@ -116,10 +164,10 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section> --><!-- End About Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <!-- <section id="services" class="services">
       <div class="container">
 
         <div class="row">
@@ -174,7 +222,7 @@
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section> --><!-- End Services Section -->
 
     <!-- ======= Clients Section ======= -->
     <!-- <section id="clients" class="clients">

@@ -46,6 +46,16 @@ function favDelete($artid, $userID){
   $res = mysqli_query($db, $sql);
 }
 
+function queryRecom(){
+  global $db;
+
+  $sql = "SELECT * FROM artwork WHERE isRecom = true";
+  //echo $sql;
+  $res = mysqli_query($db, $sql);
+
+  return $res;
+}
+
 function update_subject($subject) {
     global $db;
 
