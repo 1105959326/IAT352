@@ -4,6 +4,7 @@
   require_once('../private/initialize.php');
   include_once('header.php');
   $_SESSION['callback_url'] = 'index.php';
+  no_SSL();
 ?>
 
 <body>

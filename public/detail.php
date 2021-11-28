@@ -1,6 +1,7 @@
 <?php 
 require_once('../private/initialize.php');
-require_once('header.php'); ?>
+require_once('header.php'); 
+no_SSL();?>
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
