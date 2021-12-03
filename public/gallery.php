@@ -27,9 +27,9 @@ no_SSL();
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">Material</li>
+              <li data-filter=".filter-card">Artist</li>
+              <li data-filter=".filter-web">Date</li>
             </ul>
           </div>
         </div>
@@ -44,17 +44,23 @@ no_SSL();
 
     		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter-app\">";
     		    echo "<div class=\"portfolio-wrap\" >";
-    		    echo "<img src=" .$row['PhotoURL']. "  class=\"img-fluid\" style=\"margin-left:auto;margin-right:auto;width:100%;height:100%\">";
+    		    echo "<img src=" .$row['PhotoURL']. "   height = \"400\" style=\"margin-left:auto;margin-right:auto;\">";
     		    echo "<div class=\"portfolio-info\">";
                     if ($row['SiteName']!= null) echo "<h4>" .$row['SiteName']. "</h4>";
                     else echo "<h4>Untitled</h4>";
+                    
+                    if ($row['artistID']!= null) echo "<p style=\"text-transform:capitalize;\">" .$row['FirstN']." ". $row['LastN']. "</p>";
+                    else echo "<p>Unknow artist</p>";
+
+                    if ($row['YearOfInstallation']!= null) echo "<p>" .$row['YearOfInstallation']."</p>";
+                    else echo "<p>Unknow Date</p>";
+
                     echo "
                     <div class=\"portfolio-links\">
-                      
                       <a href=\"detail.php?varname=".$row['RegistryID']."\" title=\"More Details\"><i class=\"bx bx-link\"></i></a>
-
                       
                     </div>
+
                   </div>
                 </div>
               </div>";
