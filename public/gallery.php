@@ -38,8 +38,48 @@ no_SSL();
 
 
         <?php
+        // global $page, $firstcount;
+        // $displaypg = 10; //Limited item for each page
+        // if(!$page) $page=1; 
         
-    		$res = queryAll('artwork');
+        // $page=min($lastpg,$page); 
+        // $prepg=$page-1; //last page
+        // $nextpg=($page==$lastpg ? 0 : $page+1); //next page
+        // $firstcount=($page-1)*$displaypg; 
+
+        //$sql = "SELECT * FROM artwork LIMIT 0 , 10";
+	      //$res = mysqli_query($db, $sql);
+
+        // $firstcount = 0;
+        // $displaypg = 10;
+
+        $page=$_GET['page'];
+        if($page==0){
+            $page=1;
+        }
+        //设置每页最大能显示的数量
+        $pagesize=9;
+
+        $total = find_num('artwork');
+        //echo '11111'.$total;
+        $lastpg=ceil($total/$pagesize);
+        //echo $lastpg;
+
+        // echo $lastpg, $total;
+
+    //   $query="select count(*) as total from artwork";     
+    //   echo'1';
+    //  $result = mysqli_query($db, $query);
+    //  echo'2';
+    //  $row= mysqli_fetch_row($result);    
+    //  echo'3';  
+    //  $message_count=$row[0];
+
+
+
+
+        
+    		$res = queryLimited('artwork',$page,$pagesize);
     		while ($row = mysqli_fetch_assoc($res)){
 
     		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter-app\">";
@@ -67,6 +107,45 @@ no_SSL();
 
     		    }
 
+          echo "</div><div class=\"center\"> <div class=\"pagination\">";
+
+          if($page!=1){
+              echo("<a href=gallery.php?page=1>First Page</a>");
+               echo("<a href=gallery.php?page=".($page-1).">Previous Page</a>");
+          }
+          //下拉跳转列表，循环列出所有页码： 
+          //$pagenav.="　到第 <select name='topage' size='1' onchange='window.location=\"$url=\"+this.value'>\n"; 
+          for($i=1;$i<=$lastpg;$i++){
+            echo("<a href=gallery.php?page=".($i).">".$i."</a>");
+
+              //if($i==$page) $pagenav.="<option value='$i' selected>$i</option>\n"; 
+                      //else $pagenav.="<option value='$i'>$i</option>\n"; 
+          } 
+          if($page!=$lastpg){
+              
+              echo("<a href=gallery.php?page=".($page+1).">Next Page</a>");
+          
+              echo("<a href=gallery.php?page=".$pagecount.">Last Page</a>");
+          }
+
+          echo "</div></div></section> ";
           ?>
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    
+    <?php
+    include_once('footer.php');
+    ?>
+  
+    </footer><!-- End Footer -->
+  
+    
+  </body>
+  
+  </html>
+
+       
 
 

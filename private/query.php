@@ -3,7 +3,16 @@
 function queryAll($table){
 	global $db;
 
-	$sql = "SELECT * FROM $table";
+	$sql = "SELECT * FROM $table ";
+	$res = mysqli_query($db, $sql);
+	return $res;
+}
+
+function queryLimited($table,$start_item,$list_item){
+	global $db;
+
+	$sql = "SELECT * FROM $table LIMIT $start_item, $list_item";
+  //$sql = "SELECT * FROM $table LIMIT". ($start_item-1) * 5 . ",5";
 	$res = mysqli_query($db, $sql);
 	return $res;
 }
@@ -108,5 +117,17 @@ function find_id_by_name($username) {
   $subject = mysqli_fetch_assoc($result);
   mysqli_free_result($result);
   return implode($subject); // returns an assoc. array
+}
+
+function find_num($table){
+  global $db;
+
+  $sql = "SELECT COUNT(1) FROM $table";
+  $result = mysqli_query($db, $sql);
+  $row= mysqli_fetch_row($result);      
+  $message_count=$row[0];
+  //echo "message_count".$message_count;
+  return $message_count;
+
 }
 ?>

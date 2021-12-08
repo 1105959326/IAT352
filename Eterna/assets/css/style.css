@@ -1880,3 +1880,31 @@ section {
 .warning {
   color: #e96b56;
 }
+
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid rgb(73, 73, 73);
+  margin: 0 4px;
+  border-radius: 5px;
+}
+
+.pagination a.active {
+  background-color: #e96b56;
+  color: white;
+  border: 1px solid #e96b56;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {background-color: #e96b56;}
