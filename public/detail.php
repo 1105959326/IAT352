@@ -55,6 +55,7 @@ no_SSL();?>
                 <li><strong>Type</strong>: ".$row['Type']."</li>
                 <li><strong>Site Name</strong>: ".$row['SiteName']."</li>
                 <li><strong>Project date</strong>: ".$row['YearOfInstallation']."</li>
+                <li><strong>Primary Material</strong>: ".$row['PrimaryMaterial']."</li>
                 <br>
                 <form method = \"post\">
                   <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"favor\" value=\"Add to Favorite\"></div>

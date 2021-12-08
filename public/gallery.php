@@ -29,8 +29,8 @@ no_SSL();
               <li data-filter="*" class="filter-active">All</li>
               <li data-filter=".filter-2000"><2000</li>
               <li data-filter=".filter--2000">>2000</li>
-              <li data-filter=".filter-card">Artist</li>
-              <li data-filter=".filter-web">Date</li>
+              <li data-filter=".filter-card">Mural</li>
+              <li data-filter=".filter-web">Memorial or monument</li>
             </ul>
           </div>
         </div>
