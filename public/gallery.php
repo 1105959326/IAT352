@@ -27,7 +27,8 @@ no_SSL();
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">Material</li>
+              <li data-filter=".filter-2000"><2000</li>
+              <li data-filter=".filter--2000">>2000</li>
               <li data-filter=".filter-card">Artist</li>
               <li data-filter=".filter-web">Date</li>
             </ul>
@@ -82,7 +83,10 @@ no_SSL();
     		$res = queryLimited('artwork',$page,$pagesize);
     		while ($row = mysqli_fetch_assoc($res)){
 
-    		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter-app\">";
+    		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter";
+                if ($row['YearOfInstallation'] > 2000) echo "--2000";
+                else echo "-2000";
+            echo "\">";
     		    echo "<div class=\"portfolio-wrap\" >";
     		    echo "<img src=" .$row['PhotoURL']. "   height = \"400\" style=\"margin-left:auto;margin-right:auto;\">";
     		    echo "<div class=\"portfolio-info\">";
