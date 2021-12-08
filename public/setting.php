@@ -206,9 +206,9 @@ while ($row = mysqli_fetch_assoc($res)){
           </div>";
 
   if (isset($_POST['remove'])){
-    echo $row['RegistryID'];
-    // favDelete($row['RegistryID'], $userID);
-    // header('Location:setting.php');
+    //echo $row['RegistryID'];
+     favDelete($row['RegistryID'], $userID);
+     header('Location:setting.php');
   }
           }
       echo "</div>";
