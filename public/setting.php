@@ -199,14 +199,13 @@ while ($row = mysqli_fetch_assoc($res)){
                 <br>
                   <div class=\"text-center\"><a href=\"detail.php?varname=".$row['RegistryID']."\" style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\">More Information</a></div>
                   <br>
-                  <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"remove\" value=\"Remove From Favorite\"></div>
+                  <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"remove".$row['RegistryID']."\" value=\"Remove From Favorite\"></div>
               </ul>
             </div>
             </form>
           </div>";
 
-  if (isset($_POST['remove'])){
-    //echo $row['RegistryID'];
+  if (isset($_POST["remove".$row['RegistryID']])){
      favDelete($row['RegistryID'], $userID);
      header('Location:setting.php');
   }
