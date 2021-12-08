@@ -130,4 +130,13 @@ function find_num($table){
   return $message_count;
 
 }
+
+function find_type(){
+  global $db;
+
+  $sql = "SELECT DISTINCT(Type) FROM artwork ORDER BY Type DESC";
+  $res = mysqli_query($db, $sql);
+
+  return $res;
+}
 ?>

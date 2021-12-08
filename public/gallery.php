@@ -26,16 +26,42 @@ no_SSL();
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-2000"><2000</li>
-              <li data-filter=".filter--2000">>2000</li>
-              <li data-filter=".filter-card">Mural</li>
-              <li data-filter=".filter-web">Memorial or monument</li>
+              <h3>Type</h3>
+                    <?php
+
+                    $res = find_type();
+                    while ($row = mysqli_fetch_assoc($res)){
+                        
+                    ?>
+                    <div class="list-group-item checkbox">
+                        <label><input type="checkbox" class="common_selector ram" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
+                    </div>
+                    <?php    
+                    }
+
+                    ?>
+                </div>  
             </ul>
           </div>
-        </div>
 
         <div class="row portfolio-container">
+<!--  <div class="list-group">
+     <h3>Type</h3>
+                    <?php
+
+                    $res = find_type();
+                    while ($row = mysqli_fetch_assoc($res)){
+                        
+                    ?>
+                    <div class="list-group-item checkbox">
+                        <label><input type="checkbox" class="common_selector ram" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
+                    </div>
+                    <?php    
+                    }
+
+                    ?>
+                </div>   -->
+
 
 
         <?php
@@ -78,14 +104,13 @@ no_SSL();
 
 
 
-
         
     		$res = queryLimited('artwork',$page,$pagesize);
     		while ($row = mysqli_fetch_assoc($res)){
 
     		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter";
-                if ($row['YearOfInstallation'] > 2000) echo "--2000";
-                else echo "-2000";
+                // if ($row['YearOfInstallation'] > 2000) echo "--2000";
+                // else echo "-2000";
             echo "\">";
     		    echo "<div class=\"portfolio-wrap\" >";
     		    echo "<img src=" .$row['PhotoURL']. "   height = \"400\" style=\"margin-left:auto;margin-right:auto;\">";
@@ -145,7 +170,8 @@ no_SSL();
   
     </footer><!-- End Footer -->
   
-    
+<script type="text/javascript" src = "../private/ajax.js"></script>
+
   </body>
   
   </html>

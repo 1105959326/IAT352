@@ -8,6 +8,7 @@
   <title>Vancouver Public Art</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <script src="js/jquery-1.10.2.min.js"></script>
 
   <!-- Favicons -->
   <link href="../Eterna/assets/img/favicon.png" rel="icon">
