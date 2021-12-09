@@ -133,6 +133,8 @@ no_SSL();?>
               <br>
               <h2>Comments</h2>";
               $comments = queryAllCommentsbyID('comments', $id);
+              date_default_timezone_set('America/Vancouver');
+              $dates = date('Y-m-d H:i:s');
               if (mysqli_num_rows($comments) > 0){
 
                   while ($comment = mysqli_fetch_assoc($comments)){
@@ -159,9 +161,7 @@ no_SSL();?>
                 <div class=\"col-md-6 form-group\">
                   <input type=\"number\" name=\"rate\" class=\"form-control\" id=\"name\" placeholder=\"Rating\" required>
                 </div>
-                <div class=\"col-md-6 form-group mt-3 mt-md-0\">
-                  <input type=\"date\" class=\"form-control\" name=\"date\" id=\"email\" placeholder=\"Date\" required>
-                </div>
+                
               </div>
               <div class=\"form-group mt-3\">
                 <textarea class=\"form-control\" name=\"content\" rows=\"5\" placeholder=\"Comments\" required></textarea>
@@ -189,7 +189,7 @@ no_SSL();?>
 if(isset($_POST['submit'])) {
     if(isset($_SESSION['username'])) {
       $userID = find_id_by_name($_SESSION['username']);
-      $date = $_POST['date'];
+      $date = $dates;
       $content = $_POST['content'];
       $rate = $_POST['rate'];
       $sql = "INSERT INTO comments(artID, userID, content, dates, rates) VALUES ('$id', '$userID', '$content', '$date', '$rate')";
@@ -223,7 +223,7 @@ if (isset($_POST['favor'])){
 
       }else{
         favDelete($id, $userID);
-        header('Location:login.php');
+        header('Location:detail.php?varname='.$id);
       }
       
     }

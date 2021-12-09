@@ -105,10 +105,10 @@ no_SSL();
 
 
         
-    		$res = queryLimited('artwork',$page,$pagesize);
+    		$res = queryLimited('artwork',($page-1)*$pagesize,$pagesize);
     		while ($row = mysqli_fetch_assoc($res)){
 
-    		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter_data";
+    		    echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter";
                 // if ($row['YearOfInstallation'] > 2000) echo "--2000";
                 // else echo "-2000";
             echo "\">";
@@ -170,43 +170,7 @@ no_SSL();
   
     </footer><!-- End Footer -->
   
-<script>
-$(document).ready(function(){
-
-    filter_data();
-
-    function filter_data()
-    {
-        $('.filter_data').html('<div id="loading" style="" ></div>');
-        var action = 'fetch_data';
-
-        var type = get_filter('Type');
-
-        $.ajax({
-            url:"../private/fetch_data.php",
-            method:"POST",
-            data:{action:action, type:type},
-            success:function(data){
-                $('.filter_data').html(data);
-            }
-        });
-    }
-
-    function get_filter(class_name)
-    {
-        var filter = [];
-        $('.'+class_name+':checked').each(function(){
-            filter.push($(this).val());
-        });
-        return filter;
-    }
-
-    $('.common_selector').click(function(){
-        filter_data();
-    });
-
-});
-</script>
+<script type="text/javascript" src = "../private/ajax.js"></script>
 
   </body>
   
