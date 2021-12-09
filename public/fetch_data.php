@@ -36,7 +36,7 @@ require_once('../private/initialize.php');
 if(isset($_POST["action"]))
 {
  $sql = "
-  SELECT * FROM artwork
+  SELECT * FROM artwork WHERE RegistryID > '1'
  ";
 
  if(isset($_POST["Type"]))
@@ -44,9 +44,18 @@ if(isset($_POST["action"]))
   $type_filter = implode("','", $_POST["Type"]);
 
   $sql .= "
-   WHERE Type IN('".$type_filter."')
+   AND Type IN('".$type_filter."')
   ";
  }
+  if(isset($_POST["PrimaryMaterial"]))
+ {
+  $material_filter = implode("','", $_POST["PrimaryMaterial"]);
+
+  $sql .= "
+   AND PrimaryMaterial IN('".$material_filter."')
+  ";
+ }
+
 
 $res = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_assoc($res)){

@@ -77,10 +77,11 @@ $(document).ready(function(){
         $('.filter_data').html('<div id="loading" style="" ></div>');
         var action = 'fetch_data';
         var Type = get_filter('Type');
+        var PrimaryMaterial = get_filter('PrimaryMaterial');
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, Type:Type},
+            data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial},
             success:function(data){
                 $('.filter_data').html(data);
             }
