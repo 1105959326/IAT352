@@ -32,5 +32,6 @@ $(document).ready(function(){
     $('.common_selector').click(function(){
         filter_data();
     });
+
 });
 </script>
