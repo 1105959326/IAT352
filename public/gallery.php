@@ -3,6 +3,14 @@ require_once('../private/initialize.php');
 require_once('header.php'); 
 $_SESSION['callback_url'] = 'gallery.php';
 no_SSL();
+
+ $page=$_GET['page'];
+// if($page==null){
+//   echo "cant get".$page;
+//   $page=1;
+// }else{
+//   echo "alread get" . $page;
+// }
 ?>
 
 
@@ -78,12 +86,19 @@ $(document).ready(function(){
         var action = 'fetch_data';
         var Type = get_filter('Type');
         var PrimaryMaterial = get_filter('PrimaryMaterial');
+        var page = getUrlParam('page');
+;
+        //var Page = $_GET['page'];
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial},
+            data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial, page:page},
+            //data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial},
             success:function(data){
                 $('.filter_data').html(data);
+            },
+            error:function(data){
+              alert('fail!');
             }
         });
     }
@@ -100,6 +115,12 @@ $(document).ready(function(){
     $('.common_selector').click(function(){
         filter_data();
     });
+
+    function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
 
 
 });

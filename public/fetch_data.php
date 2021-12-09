@@ -32,18 +32,26 @@
 //fetch_data.php
 
 require_once('../private/initialize.php');
-echo $_GET['page'];
-if (isset($_GET['page']))$page=$_GET['page'];
-else $page = 1;
 
-echo $page;
-$pagesize=12;
+ $page=$_POST['page'];
+if($page==null || $page == 0){
+  //echo "cant get".$page;
+  $page=1;
+}
+//echo "page:" . $page;
+//var_dump($_POST);
 
-        $total = find_num('artwork');
-        //echo '11111'.$total;
-        $lastpg=ceil($total/$pagesize);
 
-          $start = ($page-1)*$pagesize;
+
+//echo $page;
+$pagesize=9;
+
+$total = find_num('artwork');
+//echo 'total'.$total;
+$lastpg=ceil($total/$pagesize);
+//echo "lastpage".$lastpg;
+
+$start = ($page-1)*$pagesize;
 
 
 if(isset($_POST["action"]))

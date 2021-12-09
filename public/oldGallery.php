@@ -154,7 +154,7 @@ no_SSL();
               
               echo("<a href=gallery.php?page=".($page+1).">Next Page</a>");
           
-              echo("<a href=gallery.php?page=".$pagecount.">Last Page</a>");
+              echo("<a href=gallery.php?page=".$lastpg.">Last Page</a>");
           }
 
           echo "</div></div></section> ";
