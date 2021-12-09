@@ -55,6 +55,17 @@ function favDelete($artid, $userID){
   $res = mysqli_query($db, $sql);
 }
 
+function favCheck($artid){
+  global $db;
+  $sql = "SELECT userID FROM favourite WHERE artID = '$artid' ";
+  $query = mysqli_query($db, $sql);
+  //echo"before res";
+  $res = mysqli_fetch_array($query);
+  //echo 're'.$res;
+
+  return $res;
+}
+
 function queryRecom(){
   global $db;
 
