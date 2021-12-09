@@ -32,11 +32,24 @@
 //fetch_data.php
 
 require_once('../private/initialize.php');
+echo $_GET['page'];
+if (isset($_GET['page']))$page=$_GET['page'];
+else $page = 1;
+
+echo $page;
+$pagesize=12;
+
+        $total = find_num('artwork');
+        //echo '11111'.$total;
+        $lastpg=ceil($total/$pagesize);
+
+          $start = ($page-1)*$pagesize;
+
 
 if(isset($_POST["action"]))
 {
  $sql = "
-  SELECT * FROM artwork WHERE RegistryID > '1'
+  SELECT * FROM artwork  WHERE RegistryID > '1'
  ";
 
  if(isset($_POST["Type"]))
@@ -55,8 +68,8 @@ if(isset($_POST["action"]))
    AND PrimaryMaterial IN('".$material_filter."')
   ";
  }
-
-
+  $sql .= "LIMIT $start, $pagesize";
+  //echo $sql;
 $res = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_assoc($res)){
 
@@ -87,6 +100,23 @@ $res = mysqli_query($db, $sql);
               </div>";
 
             }
+            echo "<div class=\"center\"> <div class=\"pagination\">";
+              if($page!=1){
+              echo("<a href=gallery.php?page=1>First Page</a>");
+               echo("<a href=gallery.php?page=".($page-1).">Previous Page</a>");
+          }
+          for($i=1;$i<=$lastpg;$i++){
+            echo("<a href=gallery.php?page=".($i).">".$i."</a>");
 
+              //if($i==$page) $pagenav.="<option value='$i' selected>$i</option>\n"; 
+                      //else $pagenav.="<option value='$i'>$i</option>\n"; 
+          } 
+          if($page!=$lastpg){
+              
+              echo("<a href=gallery.php?page=".($page+1).">Next Page</a>");
+          
+              echo("<a href=gallery.php?page=".$lastpg.">Last Page</a>");
+          }
+          echo "</div></div> ";
           }
 ?>
