@@ -24,6 +24,19 @@ no_SSL();?>
   $res = queryAllbyID('artwork', $id);
   
   $_SESSION['callback_url'] = 'detail.php?varname='.$id;
+
+  $userID = find_id_by_name($_SESSION['username']);
+  //echo $id;
+      //$check =  implode(favCheck($id));
+      $check =  favCheck($id);
+      //echo "check".$check;
+      if ($check != null && in_array($userID,$check)){
+        $faved = "1";
+      }else{
+        $faved = "0";
+      }
+      //$chec =  implode(' ',$check);
+      //echo "fav".$faved ."check".$chec."id".$id;
   //echo $id;
   //echo $_SESSION['callback_url'];
 
@@ -57,9 +70,16 @@ no_SSL();?>
                 <li><strong>Project date</strong>: ".$row['YearOfInstallation']."</li>
                 <li><strong>Primary Material</strong>: ".$row['PrimaryMaterial']."</li>
                 <br>
-                <form method = \"post\">
-                  <div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"favor\" value=\"Add to Favorite\"></div>
-                </form>
+                <form method = \"post\">";
+                if ($faved == "0") {
+                  echo "<div class=\"text-center\">
+                  <input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"favor\" value=\"Add to Favorite\"></div>";
+                }else{
+                  echo "<div class=\"text-center\">
+                  <input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"favor\" value=\"Remove from Favorite\"></div>";
+                }
+                  
+                echo"</form>
               </ul>
             </div>
             <div class=\"portfolio-description\">
@@ -190,12 +210,18 @@ if(isset($_POST['submit'])) {
 if (isset($_POST['favor'])){
   if(isset($_SESSION['username'])) {
       $userID = find_id_by_name($_SESSION['username']);
-      $sql = "INSERT INTO favourite(artID, userID) VALUES ('$id', '$userID')";
-      if (mysqli_query($db, $sql)){
+      if ($faved == "0"){
+        $sql = "INSERT INTO favourite(artID, userID) VALUES ('$id', '$userID')";
+        if (mysqli_query($db, $sql)){
         //echo "Pulished!";
+        }else{
+          echo "WRONG Query:" . $sql;
+        }
+
       }else{
-        echo "WRONG Query:" . $sql;
+        favDelete($id, $userID);
       }
+      
     }
     else{
       header('Location:login.php');
