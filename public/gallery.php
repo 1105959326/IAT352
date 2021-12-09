@@ -19,32 +19,52 @@ no_SSL();
         <h2>Gallery</h2>
 
       </div>
-    </section><!-- End Breadcrumbs -->                     
-        <div class="container">
-            <div class="list-group">
-          <h3>Type</h3>
-                    <?php
-                    $res = find_type();
-                      while ($row = mysqli_fetch_assoc($res)){
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector Type" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
-                    </div>
-                    <?php    
-                    }
+    </section><!-- End Breadcrumbs -->
+    <div class="container"> 
+      <div class = "row gy-4">                 
+        <div class="col-lg-2">
+          <div class="list-group">
+            <h3>Type</h3>
+                      <?php
+                      $res = find_type();
+                        while ($row = mysqli_fetch_assoc($res)){
+                      ?>
+                      <div class="list-group-item checkbox">
+                          <label><input type="checkbox" class="common_selector Type" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
+                      </div>
+                      <?php    
+                      }
 
-                    ?>
-                </div>
-       
-             <section id="portfolio" class="portfolio">
-      <div class="container">
+                      ?>
+                  </div>
+
+          <div class="list-group">
+            <h3>Primary Material</h3>
+                      <?php
+                      $res = findMaterial();
+                        while ($row = mysqli_fetch_assoc($res)){
+                      ?>
+                      <div class="list-group-item checkbox">
+                          <label><input type="checkbox" class="common_selector PrimaryMaterial" value="<?php echo $row['PrimaryMaterial']; ?>" > <?php echo $row['PrimaryMaterial']; ?></label>
+                      </div>
+                      <?php    
+                      }
+
+                      ?>
+                  </div>
+        </div>
+             
+
+      <div class="col-lg-10">
+        <section id="portfolio" class="portfolio">
               <br />
                 <div class="row filter_data">
                 </div>
-            </div>
-        </div>
-
+              </section>
     </div>
+  </div>
+</div>
+
 
 
 <script>
@@ -85,6 +105,13 @@ $(document).ready(function(){
 
 </script>
 
+<footer id="footer">
+    
+    <?php
+    include_once('footer.php');
+    ?>
+  
+    </footer><!-- End Footer -->
 </body>
 
 </html>

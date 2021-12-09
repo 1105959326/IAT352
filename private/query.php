@@ -150,4 +150,13 @@ function find_type(){
 
   return $res;
 }
+
+function findMaterial(){
+  global $db;
+
+  $sql = "SELECT DISTINCT(PrimaryMaterial) FROM artwork ORDER BY Type DESC";
+  $res = mysqli_query($db, $sql);
+
+  return $res;
+}
 ?>
