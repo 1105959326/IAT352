@@ -195,6 +195,7 @@ if(isset($_POST['submit'])) {
       $sql = "INSERT INTO comments(artID, userID, content, dates, rates) VALUES ('$id', '$userID', '$content', '$date', '$rate')";
       if (mysqli_query($db, $sql)){
         echo "Pulished!";
+        header('Location:detail.php?varname='.$id);
       }else{
         echo "WRONG Query:" . $sql;
       }
@@ -213,13 +214,16 @@ if (isset($_POST['favor'])){
       if ($faved == "0"){
         $sql = "INSERT INTO favourite(artID, userID) VALUES ('$id', '$userID')";
         if (mysqli_query($db, $sql)){
+          header('Location:detail.php?varname='.$id);
         //echo "Pulished!";
         }else{
           echo "WRONG Query:" . $sql;
+          header('Location:detail.php?varname='.$id);
         }
 
       }else{
         favDelete($id, $userID);
+        header('Location:login.php');
       }
       
     }

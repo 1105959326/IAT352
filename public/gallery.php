@@ -34,7 +34,7 @@ no_SSL();
                         
                     ?>
                     <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector ram" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
+                        <label><input type="checkbox" class="common_selector type" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
                     </div>
                     <?php    
                     }
