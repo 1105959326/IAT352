@@ -1,6 +1,8 @@
 <?php 
 require_once('../private/initialize.php');
 require_once('header.php'); 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 no_SSL();?>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -32,8 +34,13 @@ no_SSL();?>
   
   $_SESSION['callback_url'] = 'detail.php?varname='.$id;
 
-  $userID = find_id_by_name($_SESSION['username']);
-  $userName = $_SESSION['username'];
+  
+  if(isset($_SESSION['username'])){
+    $userID = find_id_by_name($_SESSION['username']);
+    $userName = $_SESSION['username'];
+    echo "<input type=\"hidden\" id=\"userid\" value=".$userName.">";
+  };
+  
   //echo $id;
       //$check =  implode(favCheck($id));
       $check =  favCheck($id);
@@ -44,7 +51,7 @@ no_SSL();?>
         $faved = "0";
       }
 
-      echo "<input type=\"hidden\" id=\"userid\" value=".$userName.">";
+     
       //$chec =  implode(' ',$check);
       //echo "fav".$faved ."check".$chec."id".$id;
   //echo $id;
@@ -450,7 +457,7 @@ $(document).ready(function(){
             data:{artID:artID,action:'load_data'},
             dataType:"JSON",
             error: function(data) {
-             //('cant load data:');
+            alert('cant load data:');
          },
             success:function(data)
             {
@@ -495,8 +502,6 @@ $(document).ready(function(){
                     for(var count = 0; count < data.review_data.length; count++)
                     {
                         html += '<div class="row mb-3">';
-
-                        
 
                         html += '<div class="col-sm-12">';
 

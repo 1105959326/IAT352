@@ -91,7 +91,7 @@ while ($row = mysqli_fetch_assoc($res)){
                 <br>
                   <div class=\"text-center\"><a href=\"detail.php?varname=".$row['RegistryID']."\" style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\">More Information</a></div>
                   <br>";
-                  if (isset($_SESSION['username'])) echo "<div class=\"text-center\"><input style=\"background: #e96b56;border: 0;border-radius: 50px;padding: 10px 24px;color: #fff;transition: 0.4s;\" type=\"submit\" name=\"remove\" value=\"Remove From Favorite\"></div>";
+                  
               echo "</ul>
 
             </form>
@@ -103,7 +103,8 @@ while ($row = mysqli_fetch_assoc($res)){
 
       if (isset($_SESSION['username'])){
         echo "<h2 class=\"col-lg-2\"> Favorite List</h2>";
-        while ($row = mysqli_fetch_assoc($res)){
+        echo "<div class=\"col-lg-12\"> </div><div class=\"row\"> ";
+        while ($row = mysqli_fetch_assoc($res1)){
 
           echo "
         
