@@ -116,7 +116,7 @@ if(is_post_request()) {
     <section id="contact" class="contact">
       <div class="container">
       <?php 
-      echo $_SESSION['message'];
+      //echo $_SESSION['message'];
       unset($_SESSION['message']);
       foreach($errors as $x => $value) {
         echo "<a href='#'>". $value . "</a>";
