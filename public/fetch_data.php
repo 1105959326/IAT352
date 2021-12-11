@@ -78,7 +78,11 @@ if(isset($_POST["action"]))
  }
   $sql .= "LIMIT $start, $pagesize";
   //echo $sql;
+
 $res = mysqli_query($db, $sql);
+$total = mysqli_num_rows($res);
+//echo 'total'.$total;
+$lastpg=ceil($total/$pagesize);
         while ($row = mysqli_fetch_assoc($res)){
 
             echo "<div class=\"col-lg-4 col-md-6 portfolio-item filter_data";
