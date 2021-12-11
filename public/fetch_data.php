@@ -46,11 +46,6 @@ if($page==null || $page == 0){
 //echo $page;
 $pagesize=9;
 
-$total = find_num('artwork');
-//echo 'total'.$total;
-$lastpg=ceil($total/$pagesize);
-//echo "lastpage".$lastpg;
-
 $start = ($page-1)*$pagesize;
 
 
@@ -76,11 +71,15 @@ if(isset($_POST["action"]))
    AND PrimaryMaterial IN('".$material_filter."')
   ";
  }
+ $res = mysqli_query($db, $sql);
+$total = mysqli_num_rows($res);
+ if ($total > 9){
   $sql .= "LIMIT $start, $pagesize";
+  $total = find_num('artwork');
+}
   //echo $sql;
 
 $res = mysqli_query($db, $sql);
-$total = mysqli_num_rows($res);
 //echo 'total'.$total;
 $lastpg=ceil($total/$pagesize);
         while ($row = mysqli_fetch_assoc($res)){
