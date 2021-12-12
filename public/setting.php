@@ -24,13 +24,13 @@ if(is_post_request()) {
     $user_res = mysqli_query($db, $user_query);
 
     // If there is no record, then it should just display the error message
-    //if(mysqli_num_rows($user_res) != 0) {
     // Save the hashed password from db into a variable
       
     $hashed_password = mysqli_fetch_assoc($user_res)['password'];
   
 
     // Use password verify to check if the entered password matches
+    //if errors display information depends on situation
     if(password_verify($_POST['password'], $hashed_password)) {
       $result = update_subject($content);
       if($result === true) {
@@ -93,7 +93,7 @@ if(is_post_request()) {
       }?>
 
       </div>
-
+      <!-- html code for input display -->
       <div class="row justify-content-center">
         <div class="col-lg-9 ">
           <form action="setting.php" method="post" class="php-email-form">
@@ -136,6 +136,8 @@ if(is_post_request()) {
 
       <div class="container">
         <?php 
+        //display favourite section
+
         $userID = find_id_by_name($_SESSION['username']);
         $res = queryFromFav($userID);
         echo "
@@ -166,6 +168,7 @@ if(is_post_request()) {
               </form>
             </div>";
 
+          //remove item from favrouite list and redirect to setting page
           if (isset($_POST["remove".$row['RegistryID']])){
             favDelete($row['RegistryID'], $userID);
             header('Location:setting.php');

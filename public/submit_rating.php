@@ -1,10 +1,11 @@
 <?php
 
 //submit_rating.php
+//reference https://www.youtube.com/watch?v=JmnM-K1HPFE
 
 $connect = new PDO("mysql:host=localhost;dbname=vancouver_public_art", "root", "");
 
-
+//insert comment to database
 if(isset($_POST["rating_data"]))
 {
 
@@ -30,6 +31,7 @@ if(isset($_POST["rating_data"]))
 
 }
 
+//find comments according to id
 if(isset($_POST["action"]))
 {
 	$average_rating = 0;
@@ -42,20 +44,15 @@ if(isset($_POST["action"]))
 	$total_user_rating = 0;
 	$review_content = array();
 	$id = $_POST['artID'];
-	
-
 
 	$query = "
 	SELECT * FROM review_table
 	WHERE artID ='".$id."' 
-	ORDER BY artID DESC
 	
 	";
 
-	//echo $query;
 
 	$result = $connect->query($query, PDO::FETCH_ASSOC);
-
 	foreach($result as $row)
 	{
 		$review_content[] = array(
@@ -65,6 +62,7 @@ if(isset($_POST["action"]))
 			'datetime'		=>	date('l jS, F Y h:i:s A', $row["datetime"])
 		);
 
+		//get total reviews number and stars number
 		if($row["user_rating"] == '5')
 		{
 			$five_star_review++;
@@ -91,7 +89,6 @@ if(isset($_POST["action"]))
 		}
 
 		$total_review++;
-
 		$total_user_rating = $total_user_rating + $row["user_rating"];
 
 	}

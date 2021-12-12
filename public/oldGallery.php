@@ -1,4 +1,7 @@
-<?php 
+<?php
+// code before inplement ajax, not gonna use in project
+
+
 require_once('../private/initialize.php');
 require_once('header.php'); 
 $_SESSION['callback_url'] = 'gallery.php';

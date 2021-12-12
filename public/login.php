@@ -1,5 +1,6 @@
 <?php
 require_once('../private/initialize.php');
+//https secure login
 require_SSL();
 $errors = [];
 
@@ -60,7 +61,7 @@ if(is_post_request()) {
   <?php
   include_once('topbar.php');
   ?>
-  
+
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->

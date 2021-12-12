@@ -1,5 +1,6 @@
 <?php
 require_once('../private/initialize.php');
+//htpps secure check
 require_SSL();
 $errors = [];
 
@@ -26,6 +27,7 @@ if(is_post_request()) {
       $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
       //insert in data base
+      //Escapes special characters for safety
       $insert_user_query = "INSERT INTO member(userName, email, password, FirstName, LastName, otherContact) VALUES (
                             '" . mysqli_real_escape_string($db, $_POST['username'])  . "',
                             '" . mysqli_real_escape_string($db, $_POST['email']) . "',
@@ -85,7 +87,7 @@ if(is_post_request()) {
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Login Section ======= -->
+    <!-- ======= Registrate Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
           
@@ -98,6 +100,7 @@ if(is_post_request()) {
 
       </div>
 
+      <!-- html display information input box -->
       <div class="row justify-content-center">
 
         <div class="col-lg-6 ">

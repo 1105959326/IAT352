@@ -13,6 +13,7 @@ function h($string="") {
 };
   
 function require_SSL(){
+    //change http to https, for security (user's information pages)
     if($_SERVER['HTTPS'] != 'on'){
         header("Location: https://" . $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
         exit();
@@ -20,6 +21,7 @@ function require_SSL(){
 }
 
 function no_SSL(){
+    //change from https to https for regular page
     if(isset($_SERVER['HTTPS']) &&  $_SERVER['HTTPS']== "on") {
         header("Location: http://" . $_SERVER['HTTP_HOST'] .
             $_SERVER['REQUEST_URI']);

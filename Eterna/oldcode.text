@@ -1,0 +1,41 @@
+              // echo "<h2>Comments</h2>";
+              // $comments = queryAllCommentsbyID('comments', $id);
+              // date_default_timezone_set('America/Vancouver');
+              // $dates = date('Y-m-d H:i:s');
+              // if (mysqli_num_rows($comments) > 0){
+
+              //     while ($comment = mysqli_fetch_assoc($comments)){
+              //       echo "
+        
+              //       <div class=\"portfolio-info\">
+              //       <h3>Commentor:".$comment['userID']."</h3>
+              //       <ul>
+              //       <li>".$comment['content']."</li>
+              //         <li><strong>Comment Date</strong>: ".$comment['dates']."</li>
+              //         <li><strong>Comment rate</strong>: ".$comment['rates']."</li>
+              //       </ul>
+              //     </div>";
+              //   }
+              // }
+
+
+// if(isset($_POST['submit'])) {
+//     if(isset($_SESSION['username'])) {
+//       $userID = find_id_by_name($_SESSION['username']);
+//       $date = $dates;
+//       $content = $_POST['content'];
+//       $rate = $_POST['rate'];
+//       $sql = "INSERT INTO comments(artID, userID, content, dates, rates) VALUES ('$id', '$userID', '$content', '$date', '$rate')";
+//       if (mysqli_query($db, $sql)){
+//         echo "Pulished!";
+//         header('Location:detail.php?varname='.$id);
+//       }else{
+//         echo "WRONG Query:" . $sql;
+//       }
+//       //echo "WRONG Query:" . $sql;
+//       //echo $mysqli_error;
+//     }
+//     else{
+//       header('Location:login.php');
+//     }
+//   }

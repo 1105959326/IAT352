@@ -9,6 +9,7 @@ function queryAll($table){
 }
 
 function queryLimited($table,$start_item,$list_item){
+  //select limited items, for page function
 	global $db;
 
 	$sql = "SELECT * FROM $table LIMIT $start_item, $list_item";
@@ -35,6 +36,7 @@ function queryAllCommentsbyID($table, $id){
 }
 
 function queryFromFav($id){
+  //select all from fav list
   global $db;
 
   $sql = "SELECT * FROM artwork, favourite WHERE artID = RegistryID AND userID = '$id'";
@@ -44,6 +46,7 @@ function queryFromFav($id){
 }
 
 function favDelete($artid, $userID){
+  //delect item from fav list
   global $db;
 
   $sql = "DELETE FROM favourite WHERE artID = '$artid' AND userID = '$userID'";
@@ -51,6 +54,7 @@ function favDelete($artid, $userID){
 }
 
 function favCheck($artid){
+  //check if this artwork has been liked by current loggin user
   global $db;
 
   $sql = "SELECT userID FROM favourite WHERE artID = '$artid' ";
@@ -61,6 +65,7 @@ function favCheck($artid){
 }
 
 function queryRecom(){
+  //select all recommand items
   global $db;
 
   $sql = "SELECT * FROM artwork WHERE isRecom = true";
@@ -70,6 +75,7 @@ function queryRecom(){
 }
 
 function update_subject($subject) {
+  //update database for user's information
     global $db;
 
 
@@ -77,7 +83,7 @@ function update_subject($subject) {
     $sql .= "password='" . db_escape($db, $subject['password']) . "', ";
     $sql .= "FirstName='" . db_escape($db, $subject['FirstName']) . "', ";
     $sql .= "LastName='" . db_escape($db, $subject['LastName']) . "',";
-	$sql .= "otherContact='" . db_escape($db, $subject['otherContact']) . "' ";
+	  $sql .= "otherContact='" . db_escape($db, $subject['otherContact']) . "' ";
     $sql .= "WHERE userName = '" . $_SESSION['username'] . "'";
     
     $result = mysqli_query($db, $sql);
@@ -96,6 +102,7 @@ function update_subject($subject) {
   }
 
 function find_subject_by_id($username) {
+  //find user information by userid
     global $db;
 
     $sql = "SELECT password, FirstName, LastName, otherContact FROM member ";
@@ -110,6 +117,7 @@ function find_subject_by_id($username) {
 }
 
 function find_id_by_name($username) {
+  //find user id by user name
   global $db;
 
   $sql = "SELECT userID FROM member ";
@@ -124,6 +132,7 @@ function find_id_by_name($username) {
 }
 
 function find_num($table){
+  //count total items number in database
   global $db;
 
   $sql = "SELECT COUNT(1) FROM $table";
@@ -136,6 +145,7 @@ function find_num($table){
 }
 
 function find_type(){
+  //find all types from data base
   global $db;
 
   $sql = "SELECT DISTINCT(Type) FROM artwork ORDER BY Type DESC";
@@ -145,6 +155,7 @@ function find_type(){
 }
 
 function findMaterial(){
+  //find all types of materials from data base
   global $db;
 
   $sql = "SELECT DISTINCT(PrimaryMaterial) FROM artwork ORDER BY Type DESC";
