@@ -22,9 +22,6 @@ if(is_post_request()) {
     
     $user_query = "SELECT password FROM member WHERE userName = '" . $_SESSION['username'] . "'";
     $user_res = mysqli_query($db, $user_query);
-
-    // If there is no record, then it should just display the error message
-    // Save the hashed password from db into a variable
       
     $hashed_password = mysqli_fetch_assoc($user_res)['password'];
   
