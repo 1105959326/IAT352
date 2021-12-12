@@ -4,13 +4,14 @@ $(document).ready(function(){
 
     function filter_data()
     {
+        //setup ajax
         $('.filter_data').html('<div id="loading" style="" ></div>');
         var action = 'fetch_data';
         var Type = get_filter('Type');
         var PrimaryMaterial = get_filter('PrimaryMaterial');
         var page = getUrlParam('page');
 ;
-        
+        //connect to fetch data file
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
@@ -23,7 +24,7 @@ $(document).ready(function(){
             }
         });
     }
-
+    //filter function
     function get_filter(class_name)
     {
         var filter = [];
@@ -32,7 +33,7 @@ $(document).ready(function(){
         });
         return filter;
     }
-
+    //call filter fucntion when click
     $('.common_selector').click(function(){
         filter_data();
     });

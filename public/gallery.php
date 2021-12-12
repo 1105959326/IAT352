@@ -1,9 +1,11 @@
 <?php 
+//initialize the page
 require_once('../private/initialize.php');
 require_once('header.php'); 
+//callback function
 $_SESSION['callback_url'] = 'gallery.php';
 no_SSL();
-
+//get Page number
  $page=$_GET['page'];
 ?>
 
@@ -32,6 +34,7 @@ no_SSL();
             <h3>Type</h3>
 
             <?php
+            //read all type and display as checkbox
             $res = find_type();
             while ($row = mysqli_fetch_assoc($res)){
             ?>
@@ -49,6 +52,7 @@ no_SSL();
             <h3>Primary Material</h3>
 
             <?php
+            //read all primary material and display as checkbox
             $res = findMaterial();
             while ($row = mysqli_fetch_assoc($res)){
             ?>
