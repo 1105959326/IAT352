@@ -1,8 +1,6 @@
 <?php
 require_once('../private/initialize.php');
 require_SSL();
-
-
 $errors = [];
 
 // Redirect to home page if user is login(find session).
@@ -62,9 +60,7 @@ if(is_post_request()) {
   <?php
   include_once('topbar.php');
   ?>
-
   
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->

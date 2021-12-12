@@ -1,19 +1,19 @@
 <?php 
 require_once('../private/initialize.php');
 require_once('header.php'); 
-
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 no_SSL();?>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
         <br><br><br>
-        
 
         <ol>
           <li><a href="index.php">Home</a></li>
@@ -151,7 +151,7 @@ no_SSL();?>
               ?>
 
 <div class="card">
-    		<div class="card-header">Sample Product</div>
+    		<div class="card-header">Comments information</div>
     		<div class="card-body">
     			<div class="row">
     				<div class="col-sm-4 text-center">
@@ -347,20 +347,16 @@ $(document).ready(function(){
 	var rating_data = 0;
 
     $('#add_review').click(function(){
-
         $('#review_modal').modal('show');
-
     });
 
     $(document).on('mouseenter', '.submit_star', function(){
 
         var rating = $(this).data('rating');
-
         reset_background();
 
         for(var count = 1; count <= rating; count++)
         {
-
             $('#submit_star_'+count).addClass('text-warning');
 
         }
@@ -373,7 +369,6 @@ $(document).ready(function(){
         {
 
             $('#submit_star_'+count).addClass('star-light');
-
             $('#submit_star_'+count).removeClass('text-warning');
 
         }
@@ -385,29 +380,21 @@ $(document).ready(function(){
 
         for(var count = 1; count <= rating_data; count++)
         {
-
             $('#submit_star_'+count).removeClass('star-light');
-
             $('#submit_star_'+count).addClass('text-warning');
         }
 
     });
 
     $(document).on('click', '.submit_star', function(){
-
         rating_data = $(this).data('rating');
-
     });
 
     $('#save_review').click(function(){
 
         var user_name = $('#userid').val();
-        //alert(user_name);
-
         var user_review = $('#user_review').val();
-
         var artID = getUrlParam('varname');
-        //alert(artID);
 
         if(user_name == '' || user_review == '')
         {
@@ -426,9 +413,7 @@ $(document).ready(function(){
                 success:function(data)
                 {
                     $('#review_modal').modal('hide');
-
                     load_rating_data();
-
                     alert(data);
                 }
             })
@@ -475,23 +460,14 @@ $(document).ready(function(){
                 });
 
                 $('#total_five_star_review').text(data.five_star_review);
-
                 $('#total_four_star_review').text(data.four_star_review);
-
                 $('#total_three_star_review').text(data.three_star_review);
-
                 $('#total_two_star_review').text(data.two_star_review);
-
                 $('#total_one_star_review').text(data.one_star_review);
-
                 $('#five_star_progress').css('width', (data.five_star_review/data.total_review) * 100 + '%');
-
                 $('#four_star_progress').css('width', (data.four_star_review/data.total_review) * 100 + '%');
-
                 $('#three_star_progress').css('width', (data.three_star_review/data.total_review) * 100 + '%');
-
                 $('#two_star_progress').css('width', (data.two_star_review/data.total_review) * 100 + '%');
-
                 $('#one_star_progress').css('width', (data.one_star_review/data.total_review) * 100 + '%');
 
                 if(data.review_data.length > 0)
@@ -501,19 +477,14 @@ $(document).ready(function(){
                     for(var count = 0; count < data.review_data.length; count++)
                     {
                         html += '<div class="row mb-3">';
-
                         html += '<div class="col-sm-12">';
-
                         html += '<div class="card">';
-
                         html += '<div class="card-header"><b>Username: '+data.review_data[count].user_name+'</b></div>';
-
                         html += '<div class="card-body">';
 
                         for(var star = 1; star <= 5; star++)
                         {
                             var class_name = '';
-
                             if(data.review_data[count].rating >= star)
                             {
                                 class_name = 'text-warning';
@@ -522,22 +493,15 @@ $(document).ready(function(){
                             {
                                 class_name = 'star-light';
                             }
-
                             html += '<i class="fas fa-star '+class_name+' mr-1"></i>';
                         }
 
                         html += '<br />';
-
                         html += data.review_data[count].user_review;
-
                         html += '</div>';
-
                         html += '<div class="card-footer text-right">On '+data.review_data[count].datetime+'</div>';
-
                         html += '</div>';
-
                         html += '</div>';
-
                         html += '</div>';
                     }
 

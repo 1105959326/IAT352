@@ -5,73 +5,75 @@ $_SESSION['callback_url'] = 'gallery.php';
 no_SSL();
 
  $page=$_GET['page'];
-// if($page==null){
-//   echo "cant get".$page;
-//   $page=1;
-// }else{
-//   echo "alread get" . $page;
-// }
 ?>
 
 
 <body>
     <!-- Page Content -->
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.php">Home</a></li>
+        <li>Gallery</li>
+      </ol>
+      <h2>Gallery</h2>
 
-        <ol>
-          <li><a href="index.php">Home</a></li>
-          <li>Gallery</li>
-        </ol>
-        <h2>Gallery</h2>
+    </div>
+  </section>
+    <!-- End Breadcrumbs -->
 
-      </div>
-    </section><!-- End Breadcrumbs -->
+    <!-- ======= Checkbox ======= -->
+  <section>
     <div class="container"> 
       <div class = "row gy-4">                 
         <div class="col-lg-2">
           <div class="list-group">
             <h3>Type</h3>
-                      <?php
-                      $res = find_type();
-                        while ($row = mysqli_fetch_assoc($res)){
-                      ?>
-                      <div class="list-group-item checkbox">
-                          <label><input type="checkbox" class="common_selector Type" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
-                      </div>
-                      <?php    
-                      }
 
-                      ?>
-                  </div>
+            <?php
+            $res = find_type();
+            while ($row = mysqli_fetch_assoc($res)){
+            ?>
+
+            <div class="list-group-item checkbox">
+              <label><input type="checkbox" class="common_selector Type" value="<?php echo $row['Type']; ?>" > <?php echo $row['Type']; ?></label>
+            </div>
+
+            <?php    
+            }
+            ?>
+          </div>
 
           <div class="list-group">
             <h3>Primary Material</h3>
-                      <?php
-                      $res = findMaterial();
-                        while ($row = mysqli_fetch_assoc($res)){
-                      ?>
-                      <div class="list-group-item checkbox">
-                          <label><input type="checkbox" class="common_selector PrimaryMaterial" value="<?php echo $row['PrimaryMaterial']; ?>" > <?php echo $row['PrimaryMaterial']; ?></label>
-                      </div>
-                      <?php    
-                      }
 
-                      ?>
-                  </div>
+            <?php
+            $res = findMaterial();
+            while ($row = mysqli_fetch_assoc($res)){
+            ?>
+                      
+            <div class="list-group-item checkbox">
+              <label><input type="checkbox" class="common_selector PrimaryMaterial" value="<?php echo $row['PrimaryMaterial']; ?>" > <?php echo $row['PrimaryMaterial']; ?></label>
+            </div>
+            
+            <?php    
+            }
+            ?>
+                  
+          </div>
         </div>
-             
-
-      <div class="col-lg-10">
-        <section id="portfolio" class="portfolio">
-              <br />
-                <div class="row filter_data">
-                </div>
-              </section>
+        
+        <div class="col-lg-10">
+          <section id="portfolio" class="portfolio">
+            <br/>
+            <div class="row filter_data">
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
 
 
@@ -88,12 +90,11 @@ $(document).ready(function(){
         var PrimaryMaterial = get_filter('PrimaryMaterial');
         var page = getUrlParam('page');
 ;
-        //var Page = $_GET['page'];
+        
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
             data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial, page:page},
-            //data:{action:action, Type:Type, PrimaryMaterial:PrimaryMaterial},
             success:function(data){
                 $('.filter_data').html(data);
             },
@@ -120,7 +121,7 @@ $(document).ready(function(){
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.search.substr(1).match(reg);  //匹配目标参数
             if (r != null) return unescape(r[2]); return null; //返回参数值
-        }
+    }
 
 
 });

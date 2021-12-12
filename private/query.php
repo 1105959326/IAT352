@@ -12,7 +12,6 @@ function queryLimited($table,$start_item,$list_item){
 	global $db;
 
 	$sql = "SELECT * FROM $table LIMIT $start_item, $list_item";
-  //$sql = "SELECT * FROM $table LIMIT". ($start_item-1) * 5 . ",5";
 	$res = mysqli_query($db, $sql);
 	return $res;
 }
@@ -21,7 +20,6 @@ function queryAllbyID($table, $id){
 	global $db;
 
 	$sql = "SELECT * FROM $table WHERE RegistryID = '$id'";
-	//echo $sql;
 	$res = mysqli_query($db, $sql);
 
 	return $res;
@@ -31,7 +29,6 @@ function queryAllCommentsbyID($table, $id){
 	global $db;
 
 	$sql = "SELECT * FROM $table WHERE artID = '$id'";
-	//echo $sql;
 	$res = mysqli_query($db, $sql);
 
 	return $res;
@@ -41,7 +38,6 @@ function queryFromFav($id){
   global $db;
 
   $sql = "SELECT * FROM artwork, favourite WHERE artID = RegistryID AND userID = '$id'";
-  //echo $sql;
   $res = mysqli_query($db, $sql);
 
   return $res;
@@ -51,17 +47,15 @@ function favDelete($artid, $userID){
   global $db;
 
   $sql = "DELETE FROM favourite WHERE artID = '$artid' AND userID = '$userID'";
-  //echo $sql;
   $res = mysqli_query($db, $sql);
 }
 
 function favCheck($artid){
   global $db;
+
   $sql = "SELECT userID FROM favourite WHERE artID = '$artid' ";
   $query = mysqli_query($db, $sql);
-  //echo"before res";
   $res = mysqli_fetch_array($query);
-  //echo 're'.$res;
 
   return $res;
 }
@@ -70,7 +64,6 @@ function queryRecom(){
   global $db;
 
   $sql = "SELECT * FROM artwork WHERE isRecom = true";
-  //echo $sql;
   $res = mysqli_query($db, $sql);
 
   return $res;

@@ -1,12 +1,6 @@
 
 
 <head>
-  <!-- =======================================================
-  * Template Name: Eterna - v4.6.0
-  * Template URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
   <?php
   require_once('../private/initialize.php');
   include_once('header.php');
@@ -23,26 +17,22 @@
 
   <!-- ======= Header ======= -->
   
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-
         <ol>
           <li><a href="index.php">Home</a></li>
           <li>Citation</li>
         </ol>
         <h2>Citation</h2>
-
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Citation Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-
         <div class="row">
           <div class="col-lg-6">
             <div class="info-box mb-4">
@@ -67,6 +57,15 @@
           <div class="row">
           <div class="col-lg-6">
             <div class="info-box mb-4">
+              <h3>Other Resource (Tutorial for Ajax)</h3>
+              <p>https://www.youtube.com/watch?v=JmnM-K1HPFE
+              <br>https://www.webslesson.info/2018/08/how-to-make-product-filter-in-php-using-ajax.html
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-lg-6">
+            <div class="info-box mb-4">
               <h3>IAT 352 Final Project</h3>
               <p>Instructors: Marek Hatala 
               <br>TA: Leo Ruan
@@ -83,7 +82,6 @@
             </div>
           </div>
 
-          
         </div>
 
       </div>
